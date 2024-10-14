@@ -1,22 +1,23 @@
-// import mongoose from 'mongoose';
+import mongoose from 'mongoose';
 
 
-// let isConnected = false;
+let isConnected = false;
 
-// export const connectToDB = async () => {
-//   mongoose.set('strictQuery', true);
+export const connectToDB = async () => {
+  mongoose.set('strictQuery', true);
 
-//   if (isConnected) {
-//     console.log('MongoDB is already connected');
-//     return;
-//   }
+  if (isConnected) {
+    console.log('MongoDB is already connected');
+    return;
+  }
 
-//   try {
-//     await mongoose.connect(process.env.MONGODB_URI);
-//     isConnected = true;
-//     console.log('MongoDB connected');
-//   } catch (error) {
-//     console.log(error);
-//   }
-
-// };
+  try {
+    await mongoose.connect(process.env.MONGODB_URI as string);
+    // await mongoose.connect(process.env.MONGODB_URI!);
+    // await mongoose.connect(process.env.MONGODB_URI);
+    isConnected = true;
+    console.log('MongoDB connected');
+  } catch (error) {
+    console.log(error);
+  };
+};
