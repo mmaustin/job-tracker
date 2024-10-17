@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import {AreaChart, Layers, AppWindow} from 'lucide-react';
+import { AreaChart, Layers, AppWindow } from 'lucide-react';
 
 type NavLink = {
   href: string,
