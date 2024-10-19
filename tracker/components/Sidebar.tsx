@@ -15,7 +15,8 @@ const Sidebar = () => {
 
   return (
     <aside className="py-4 px-8 bg-muted h-full">
-      <TbLetterJ className="mx-auto" />
+      {/* <TbLetterJ className="mx-auto" /> */}
+      <h2 className="font-bold display flex justify-center text-blue-600 text-2xl">Just One</h2>
       <div className="flex flex-col mt-20 gap-y-4">
         {links.map(link => {
           return <Button asChild key={link.href} variant={pathname === link.href ? 'default' : 'link'}>
