@@ -8,7 +8,9 @@ import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
   return (
     <nav className="bg-muted py-4 sm:px-16 md:px-24 px-4 flex items-center justify-between">
-      <LinksDropdown />
+      <div className="">
+        <LinksDropdown />
+      </div>
       <div className="flex items-center gap-x-4">
         <ThemeToggle />
         <UserButton />
