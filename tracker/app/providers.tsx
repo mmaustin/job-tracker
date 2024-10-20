@@ -1,10 +1,16 @@
-'use client'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
 
-function Providers({children}: {children: React.ReactNode}) {
+import { ThemeProvider } from "@/components/theme-provider";
+
+
+function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
-      {children}
+      <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        {children}
+      </ThemeProvider>
     </>
   )
 }
-export default Providers
+export default Providers;
