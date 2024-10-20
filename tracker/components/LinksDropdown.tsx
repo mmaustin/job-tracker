@@ -14,8 +14,16 @@ const LinksDropdown = () => {
           <span className="sr-only">Toggle Links</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="" >
-
+      <DropdownMenuContent className="w-52 md:hidden" align="start" sideOffset={25} >
+        {links.map(link => {
+          return (
+            <DropdownMenuItem key={link.href}>
+              <Link href={link.href} className="flex items-center gap-x-2">
+              {link.icon} <span className="capitalize">{link.label}</span>
+              </Link>
+            </DropdownMenuItem>
+          )
+        })}
       </DropdownMenuContent>
     </DropdownMenu>
   )
