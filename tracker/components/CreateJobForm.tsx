@@ -23,6 +23,7 @@ const formSchema = z.object({
 })
 
 export function CreateJobForm() {
+  
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -47,8 +48,8 @@ export function CreateJobForm() {
               <FormControl>
                 <Input placeholder="shadcn" {...field} />
               </FormControl>
-              <FormDescription>
-                This is your public display name.
+              <FormDescription className="capitalize">
+                shadcn is more complicated than next!
               </FormDescription>
               <FormMessage />
             </FormItem>
