@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { ObjectId } from 'mongoose';
 import * as z from 'zod';
 
 export type JobType = {
-  id: string;
+  _id: ObjectId;
   createdAt: Date;
   updatedAt: Date;
   clerkId: string;
