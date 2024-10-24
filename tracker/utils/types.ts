@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ObjectId } from 'mongoose';
+import { ObjectId, Types } from 'mongoose';
 import * as z from 'zod';
 
 export type JobType = {
-  _id: ObjectId;
+  _id: Types.ObjectId;
+  //or _id: ObjectId;
   createdAt: Date;
   updatedAt: Date;
   clerkId: string;
