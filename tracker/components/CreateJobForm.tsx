@@ -10,6 +10,21 @@ import { CustomFormField, CustomFormSelect } from './FormComponents';
 
 
 const CreateJobForm = () => {
+  const form = useForm<CreateAndEditJobType>({
+    resolver: zodResolver(createAndEditJobSchema),
+    defaultValues : {
+      position: '',
+      company: '',
+      location: '',
+      status: JobStatus.Pending,
+      mode: JobMode.FullTime,
+    },
+  });
+
+  function onSubmit(values: CreateAndEditJobType){
+    console.log(values);
+  };
+
   return (
     <div>CreateJobForm</div>
   )
