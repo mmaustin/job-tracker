@@ -2,7 +2,7 @@
 import { ObjectId, Types } from 'mongoose';
 import * as z from 'zod';
 
-export type JobType = {
+export type CreateAndEditJobType = {
   _id: Types.ObjectId;
   //or _id: ObjectId;
   createdAt: Date;
