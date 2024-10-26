@@ -2,11 +2,11 @@
 import { ObjectId, Types } from 'mongoose';
 import * as z from 'zod';
 
-export type CreateAndEditJobType = {
-  _id?: Types.ObjectId;
+export type JobType = {
+  _id: Types.ObjectId;
   //or _id: ObjectId;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt: Date;
+  updatedAt: Date;
   clerkId: string;
   position: string;
   company: string;
@@ -40,3 +40,5 @@ export const createAndEditJobSchema = z.object({
   status: z.nativeEnum(JobStatus),
   mode: z.nativeEnum(JobMode),
 });
+
+export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>;

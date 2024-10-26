@@ -12,7 +12,7 @@ import { CustomFormField, CustomFormSelect } from './FormComponents';
 const CreateJobForm = () => {
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
-    defaultValues : {
+    defaultValues: {
       position: '',
       company: '',
       location: '',
@@ -21,7 +21,7 @@ const CreateJobForm = () => {
     },
   });
 
-  function onSubmit(values: CreateAndEditJobType){
+  function onSubmit(values: CreateAndEditJobType) {
     console.log(values);
   };
 
