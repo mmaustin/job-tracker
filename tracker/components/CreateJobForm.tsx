@@ -27,7 +27,7 @@ const CreateJobForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className='bg-muted p-8 rounded'>
+      <form onSubmit={form.handleSubmit(onSubmit)} className=' p-8 rounded'>
         <h2 className="capitalize font-semibold text-4xl mb-6">
           add job
         </h2>

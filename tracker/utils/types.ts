@@ -3,10 +3,10 @@ import { ObjectId, Types } from 'mongoose';
 import * as z from 'zod';
 
 export type CreateAndEditJobType = {
-  _id: Types.ObjectId;
+  _id?: Types.ObjectId;
   //or _id: ObjectId;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   clerkId: string;
   position: string;
   company: string;

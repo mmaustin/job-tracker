@@ -70,7 +70,7 @@ export function CustomFormSelect({
             <SelectContent>
               {items.map((item) => {
                 return (
-                  <SelectItem key={item} value={item}>
+                  <SelectItem key={item} value={item} >
                     {item}
                   </SelectItem>
                 );
