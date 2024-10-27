@@ -8,14 +8,18 @@ import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types';
 
 
 
-export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null>{
+export async function createJobAction(): Promise<JobType | null>{
   const {userId} = auth();
 
   try {
+    await connectToDB();
     const job: JobType = await Job.create({
-      ...values, clerkId:userId
+      position: "welder", location: "detroit", company: "ford", status: "interview", mode: "internship", clerkId: userId
+      // ...values, clerkId:userId
     });
-    return job
+    console.log(job);
+    
+    return job;
   } catch (error) {
     console.log(error);
     return null;
