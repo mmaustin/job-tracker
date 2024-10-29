@@ -7,14 +7,9 @@ import { useForm } from 'react-hook-form';
 import { Button } from './ui/button';
 import { Form } from './ui/form';
 import { CustomFormField, CustomFormSelect } from './FormComponents';
-import { createJobAction } from '@/utils/actions';
 
 
 const CreateJobForm = () => {
-
-  // async function testJobHander(){
-  //   await createJobAction()
-  // }
 
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
@@ -52,7 +47,6 @@ const CreateJobForm = () => {
           </Button>
         </div>
       </form>
-       {/* <button className="bg-red-400" onClick={testJobHander}>test here</button> */}
     </Form>
   )
 }

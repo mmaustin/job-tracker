@@ -1,21 +1,16 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import CreateJobForm from "@/components/CreateJobForm";
-// import { createJobAction } from "@/utils/actions";
-
+import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 
 const AddJobPage = () => {
 
-  // async function testJobHander(){
-  //   await createJobAction()
-  // };
-  // testJobHander();
+  const queryClient = new QueryClient();
 
   return (
-    <>
-     {/* <button className="bg-red-400" onClick={testJobHander}>test here</button> */}
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <CreateJobForm />
-    </>
+    </HydrationBoundary>
   )
 };
 export default AddJobPage;
