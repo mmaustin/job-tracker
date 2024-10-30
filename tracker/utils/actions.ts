@@ -13,7 +13,7 @@ function authenticateClerkId(): string {
   return userId;
 };
 
-export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null> {
+export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | string> {
   const userId = authenticateClerkId();
 
   try {
@@ -26,8 +26,10 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
       ...values, clerkId: userId
     });
     console.log(job);
+    // const newJobId = job._id.toString();
+    // job._id = newJobId;
 
-    return job;
+    return job.company;
   } catch (error) {
     console.log(error);
     return null;

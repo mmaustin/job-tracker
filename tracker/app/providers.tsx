@@ -23,6 +23,7 @@ function Providers({ children }: { children: React.ReactNode }) {
   return (
     <>
       <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <Toaster />
         <QueryClientProvider client={queryClient} >
           {children}
           <ReactQueryDevtools initialIsOpen={false} />
