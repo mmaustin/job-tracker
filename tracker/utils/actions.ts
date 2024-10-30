@@ -1,3 +1,5 @@
+'use server'
+
 import Job from "@/models/Job";
 import { auth } from "@clerk/nextjs/server";
 import { connectToDB } from "./db";

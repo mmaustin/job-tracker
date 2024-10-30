@@ -1,12 +1,10 @@
 import { Button } from "@/components/ui/button";
-import { connectToDB } from "@/utils/db";
 import Link from "next/link";
 //import Image from "next/image";
 
 
 
 export default function Home() {
-  connectToDB();
   return (
     <main className="display flex justify-center items-center h-[300px]">
       <Button size={'lg'} asChild>

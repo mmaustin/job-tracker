@@ -10,7 +10,7 @@ import { CustomFormField, CustomFormSelect } from './FormComponents';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { createJobAction } from '@/utils/actions';
 import { useToast } from '@/hooks/use-toast';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 
 const CreateJobForm = () => {
