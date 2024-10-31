@@ -3,7 +3,20 @@ import { ObjectId, Types } from 'mongoose';
 import * as z from 'zod';
 
 export type JobType = {
-  _id: Types.ObjectId | string;
+  _id: Types.ObjectId;
+  //or _id: ObjectId;
+  createdAt: Date;
+  updatedAt: Date;
+  clerkId: string;
+  position: string;
+  company: string;
+  location: string;
+  status: string;
+  mode: string;
+};
+
+export type JobTypeWithStringId = {
+  _id: string;
   //or _id: ObjectId;
   createdAt: Date;
   updatedAt: Date;

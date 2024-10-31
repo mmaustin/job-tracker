@@ -25,9 +25,11 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
       // position: "welder", location: "detroit", company: "ford", status: "interview", mode: "internship", clerkId: userId
       ...values, clerkId: userId
     });
-    console.log(job);
     // const newJobId = job._id.toString();
     // job._id = newJobId;
+    //job._id = job._id.toString();
+    //console.log(job._id);
+    
 
     return job.company;
   } catch (error) {
