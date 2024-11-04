@@ -1,7 +1,9 @@
+import { testMongoDB } from "@/utils/actions";
 
 
 
-const StatsPage = () => {
+const StatsPage = async () => {
+  await testMongoDB();
   return (
     <div>Stats Page</div>
   )
