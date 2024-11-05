@@ -26,8 +26,8 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
     const job: JobType = await Job.create({
       ...values, clerkId: userId
     });
-  
-    const jobWithStringId: JobTypeWithStringId = {clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: job.createdAt, updatedAt: job.updatedAt};
+
+    const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: job.createdAt, updatedAt: job.updatedAt };
 
     return jobWithStringId;
   } catch (error) {
@@ -43,7 +43,7 @@ type AddValues = {
 
 export async function testMongoDB(): Promise<null> {
   const userId = authenticateClerkId();
-  let queryObj: AddValues = {clerkId: userId};
+  let queryObj: AddValues = { clerkId: userId };
 
   try {
 
@@ -51,12 +51,12 @@ export async function testMongoDB(): Promise<null> {
     //const obj = {location: "new york", status: "pending"}
     //const job = await Job.find().countDocuments()//({obj, position: "lawyer"}).or([{company: "leary"}, {clerkId: 'user_2nRdwhhdlc0o0gYx5Qhvjh8TGSb'}])
 
-    if(4 + 2 === 6) queryObj = {...queryObj, location: "new york"};
+    if (4 + 2 === 6) queryObj = { ...queryObj, location: "new york" };
 
-    const job = await  Job.find(queryObj).or([{company: "cleary"}, {position: "chef"}])
-  
+    const job = await Job.find(queryObj).or([{ company: "cleary" }, { position: "chef" }])
+
     console.log(job);
-    
+
     return null;
   } catch (error) {
     console.log(error);
@@ -88,20 +88,22 @@ export async function getAllJobsAction({
   totalPages: number;
 }> {
   const userId = authenticateClerkId();
-  let queryObj: Values = {clerkId: userId};
+  let queryObj: Values = { clerkId: userId };
   let jobs: JobType[];
 
   try {
-
+    await connectToDB();
     if (jobStatus && jobStatus !== 'all') {
-      queryObj = {...queryObj, status: jobStatus};
+      queryObj = { ...queryObj, status: jobStatus };
     };
 
-    if(search){
-      jobs = await Job.find(queryObj).or([{company: search}, {position: search}]).sort({createdAt: 'desc'});
+    if (search) {
+      jobs = await Job.find(queryObj).or([{ company: search }, { position: search }]).sort({ createdAt: 'desc' });
     } else {
-      jobs = await Job.find(queryObj).sort({createdAt:'desc'})
+      jobs = await Job.find(queryObj).sort({ createdAt: 'desc' })
     };
+    console.log(jobs);
+
 
     return { jobs, count: 0, page: 1, totalPages: 0 };
   } catch (error) {

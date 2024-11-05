@@ -1,9 +1,12 @@
-import { testMongoDB } from "@/utils/actions";
-
+import { getAllJobsAction } from "@/utils/actions";
 
 
 const StatsPage = async () => {
-  await testMongoDB();
+  await getAllJobsAction({search: '',
+  jobStatus: "pending",
+  page: 1,
+  limit: 10})
+
   return (
     <div>Stats Page</div>
   )
