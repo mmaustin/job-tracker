@@ -80,14 +80,14 @@ export async function getAllJobsAction({
   page = 1,
   limit = 10,
 }: GetAllJobsActionTypes): Promise<{
-  jobs: JobType[];
+  jobs: JobTypeWithStringId[];
   count: number;
   page: number;
   totalPages: number;
 }> {
   const userId = authenticateClerkId();
   let queryObj: QueryObjectValues = { clerkId: userId };
-  let jobs: JobType[];
+  let jobs: JobTypeWithStringId[];
 
   try {
     await connectToDB();
@@ -95,12 +95,20 @@ export async function getAllJobsAction({
       queryObj = { ...queryObj, status: jobStatus };
     };
 
+    //let jobsToStringId: JobType[];
+
     if (search) {
       jobs = await Job.find(queryObj).or([{ company: search }, { position: search }]).sort({ createdAt: 'desc' });
     } else {
       jobs = await Job.find(queryObj).sort({ createdAt: 'desc' })
     };
-    console.log(jobs);
+
+    jobs = jobs.map(job => {
+      let newId = job._id.toString();
+      return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: job.createdAt, updatedAt: job.updatedAt  } = job;
+    })
+
+    //console.log(jobs);
 
 
     return { jobs, count: 0, page: 1, totalPages: 0 };
@@ -108,5 +116,5 @@ export async function getAllJobsAction({
     console.error(error);
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
-}
+};
 

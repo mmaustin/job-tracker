@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import {JobType} from '@/utils/types';
+//import {JobTypeWithStringId} from '@/utils/types';
 
 
-function JobCart({job}: {job: JobType}) {
+function JobCart() {
 
   return (
     <div>JobCart</div>

@@ -17,7 +17,6 @@ export type JobType = {
 
 export type JobTypeWithStringId = {
   _id: string;
-  //or _id: ObjectId;
   createdAt: Date;
   updatedAt: Date;
   clerkId: string;
