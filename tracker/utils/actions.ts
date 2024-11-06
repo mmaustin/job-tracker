@@ -41,28 +41,26 @@ type AddValues = {
   location?: string,
 }
 
-export async function testMongoDB(): Promise<null> {
-  const userId = authenticateClerkId();
-  let queryObj: AddValues = { clerkId: userId };
+// export async function testMongoDB(): Promise<null> {
+//   const userId = authenticateClerkId();
+//   let queryObj: AddValues = { clerkId: userId };
 
-  try {
+//   try {
 
-    await connectToDB();
-    //const obj = {location: "new york", status: "pending"}
-    //const job = await Job.find().countDocuments()//({obj, position: "lawyer"}).or([{company: "leary"}, {clerkId: 'user_2nRdwhhdlc0o0gYx5Qhvjh8TGSb'}])
+//     await connectToDB();
 
-    if (4 + 2 === 6) queryObj = { ...queryObj, location: "new york" };
+//     if (4 + 2 === 6) queryObj = { ...queryObj, location: "new york" };
 
-    const job = await Job.find(queryObj).or([{ company: "cleary" }, { position: "chef" }])
+//     const job = await Job.aggregate([])//find(queryObj).or([{ company: "cleary" }, { position: "chef" }])
 
-    console.log(job);
+//     console.log(job);
 
-    return null;
-  } catch (error) {
-    console.log(error);
-    return null;
-  };
-};
+//     return null;
+//   } catch (error) {
+//     console.log(error);
+//     return null;
+//   };
+// };
 
 type GetAllJobsActionTypes = {
   search?: string;
@@ -71,7 +69,7 @@ type GetAllJobsActionTypes = {
   limit?: number;
 };
 
-type Values = {
+type QueryObjectValues = {
   clerkId: string,
   status?: string,
 }
@@ -88,7 +86,7 @@ export async function getAllJobsAction({
   totalPages: number;
 }> {
   const userId = authenticateClerkId();
-  let queryObj: Values = { clerkId: userId };
+  let queryObj: QueryObjectValues = { clerkId: userId };
   let jobs: JobType[];
 
   try {
