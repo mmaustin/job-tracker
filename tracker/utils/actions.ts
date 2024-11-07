@@ -7,7 +7,6 @@ import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
 // import dayjs from 'dayjs';
 import { JobType, CreateAndEditJobType, createAndEditJobSchema, JobTypeWithStringId } from './types';
-import JobsPage from "@/app/(dashboard)/jobs/page";
 
 function authenticateClerkId(): string {
   const { userId } = auth();
@@ -28,7 +27,10 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
     });
 
     const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: job.createdAt, updatedAt: job.updatedAt };
+console.log(jobWithStringId);
 
+    console.log(typeof jobWithStringId._id);
+    
     return jobWithStringId;
   } catch (error) {
     console.log(error);
@@ -87,7 +89,7 @@ export async function getAllJobsAction({
 }> {
   const userId = authenticateClerkId();
   let queryObj: QueryObjectValues = { clerkId: userId };
-  let jobs: JobTypeWithStringId[];
+  let jobs: JobType[];
 
   try {
     await connectToDB();
@@ -103,12 +105,12 @@ export async function getAllJobsAction({
       jobs = await Job.find(queryObj).sort({ createdAt: 'desc' })
     };
 
-    jobs = jobs.map(job => {
-      let newId = job._id.toString();
-      return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: job.createdAt, updatedAt: job.updatedAt  } = job;
-    })
+    // jobs = jobs.map(job => {
+    //   let newId = job._id.toString();
+    //   return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: job.createdAt, updatedAt: job.updatedAt  } = job;
+    // })
 
-    //console.log(jobs);
+    //console.log(typeof jobs);
 
 
     return { jobs, count: 0, page: 1, totalPages: 0 };
