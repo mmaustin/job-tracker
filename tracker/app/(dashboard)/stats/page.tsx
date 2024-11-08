@@ -2,10 +2,9 @@ import { getAllJobsAction } from "@/utils/actions";
 
 
 const StatsPage = async () => {
-  await getAllJobsAction({search: '',
-  jobStatus: "pending",
-  page: 1,
-  limit: 10})
+  const returnedJobs = await getAllJobsAction({});
+  console.log(returnedJobs);
+  
 
   return (
     <div>Stats Page</div>

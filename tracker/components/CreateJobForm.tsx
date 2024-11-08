@@ -33,7 +33,7 @@ const CreateJobForm = () => {
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateAndEditJobType) => createJobAction(values),
     onSuccess: data => {
-      // console.log(data);
+      console.log(data);
       
       if (!data) {
         toast({ description: 'there was an error' });

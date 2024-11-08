@@ -113,7 +113,7 @@ export async function getAllJobsAction({
       // return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: newCreatedAt, updatedAt: newUpdatedAt  } = job;
     })
 
-    console.log(jobs);
+    //console.log(jobs);
 
 
     // return { count: 0, page: 1, totalPages: 0 };
