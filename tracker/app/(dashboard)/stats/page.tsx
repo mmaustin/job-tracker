@@ -3,7 +3,14 @@ import { getAllJobsAction } from "@/utils/actions";
 
 const StatsPage = async () => {
   const returnedJobs = await getAllJobsAction({});
-  console.log(returnedJobs);
+
+  const returnedParsedJobs = returnedJobs.jobs.map(job => {
+    if(typeof job === 'string'){
+      return JSON.parse(job);
+    };
+  });
+
+  console.log(returnedParsedJobs);
   
 
   return (

@@ -27,10 +27,10 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
     });
 
     const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: JSON.stringify(job.createdAt), updatedAt: JSON.stringify(job.updatedAt) };
-console.log(jobWithStringId);
+    console.log(jobWithStringId);
 
     console.log(typeof jobWithStringId._id);
-    
+
     return jobWithStringId;
   } catch (error) {
     console.log(error);
@@ -97,7 +97,6 @@ export async function getAllJobsAction({
       queryObj = { ...queryObj, status: jobStatus };
     };
 
-    //let jobsToStringId: JobType[];
 
     if (search) {
       jobs = await Job.find(queryObj).or([{ company: search }, { position: search }]).sort({ createdAt: 'desc' });
@@ -107,20 +106,11 @@ export async function getAllJobsAction({
 
     jobs = jobs.map(job => {
       return JSON.stringify(job);
-      // let newId = job._id.toString();
-      // let newCreatedAt: Date | string = JSON.stringify(job.createdAt);
-      // let newUpdatedAt: Date | string = JSON.stringify(job.updatedAt);
-      // return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: newCreatedAt, updatedAt: newUpdatedAt  } = job;
     })
 
-    //console.log(jobs);
-
-
-    // return { count: 0, page: 1, totalPages: 0 };
     return { jobs, count: 0, page: 1, totalPages: 0 };
   } catch (error) {
     console.error(error);
-    // return { count: 0, page: 1, totalPages: 0 };
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
 };
