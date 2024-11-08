@@ -8,17 +8,19 @@ import { dehydrate, QueryClient, HydrationBoundary } from "@tanstack/react-query
 const JobsPage = async () => {
 
   const queryClient = new QueryClient();
-  const gotJobs = await queryClient.prefetchQuery({
+  const returnedJobs = await queryClient.prefetchQuery({
     queryKey: ['jobs', '', 'all', 1],
     queryFn: () => getAllJobsAction({})
   });
-  //console.log(gotJobs);
+  //console.log(returnedJobs);
   
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)} >
+    <>
       <SearchForm />
       <JobsList />
+    </>
     </HydrationBoundary>
   )
 }

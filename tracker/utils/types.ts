@@ -18,8 +18,8 @@ export type JobType = {
 
 export type JobTypeWithStringId = {
   _id: string;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: Date | string;
+  updatedAt: Date | string;
   clerkId: string;
   position: string;
   company: string;

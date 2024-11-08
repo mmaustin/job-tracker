@@ -26,7 +26,7 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
       ...values, clerkId: userId
     });
 
-    const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: job.createdAt, updatedAt: job.updatedAt };
+    const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: JSON.stringify(job.createdAt), updatedAt: JSON.stringify(job.updatedAt) };
 console.log(jobWithStringId);
 
     console.log(typeof jobWithStringId._id);
@@ -82,14 +82,14 @@ export async function getAllJobsAction({
   page = 1,
   limit = 10,
 }: GetAllJobsActionTypes): Promise<{
-  jobs: JobTypeWithStringId[];
+  jobs: JobTypeWithStringId[] | string[];
   count: number;
   page: number;
   totalPages: number;
 }> {
   const userId = authenticateClerkId();
   let queryObj: QueryObjectValues = { clerkId: userId };
-  let jobs: JobType[];
+  let jobs: JobType[] | string[];
 
   try {
     await connectToDB();
@@ -105,17 +105,22 @@ export async function getAllJobsAction({
       jobs = await Job.find(queryObj).sort({ createdAt: 'desc' })
     };
 
-    // jobs = jobs.map(job => {
-    //   let newId = job._id.toString();
-    //   return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: job.createdAt, updatedAt: job.updatedAt  } = job;
-    // })
+    jobs = jobs.map(job => {
+      return JSON.stringify(job);
+      // let newId = job._id.toString();
+      // let newCreatedAt: Date | string = JSON.stringify(job.createdAt);
+      // let newUpdatedAt: Date | string = JSON.stringify(job.updatedAt);
+      // return {_id: newId, company: job.company, clerkId: job.clerkId, position: job.position, location: job.location, status: job.status, mode: job.mode, createdAt: newCreatedAt, updatedAt: newUpdatedAt  } = job;
+    })
 
-    //console.log(typeof jobs);
+    console.log(jobs);
 
 
+    // return { count: 0, page: 1, totalPages: 0 };
     return { jobs, count: 0, page: 1, totalPages: 0 };
   } catch (error) {
     console.error(error);
+    // return { count: 0, page: 1, totalPages: 0 };
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
 };
