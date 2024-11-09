@@ -28,6 +28,7 @@ export type JobTypeWithStringId = {
   mode: string;
 };
 
+
 export enum JobStatus {
   Pending = 'pending',
   Interview = 'interview',

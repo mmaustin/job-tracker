@@ -6,7 +6,8 @@ import { auth } from "@clerk/nextjs/server";
 import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
 // import dayjs from 'dayjs';
-import { JobType, CreateAndEditJobType, createAndEditJobSchema, JobTypeWithStringId } from './types';
+import { JobType, CreateAndEditJobType, createAndEditJobSchema, JobTypeWithStringId} from './types';
+
 
 function authenticateClerkId(): string {
   const { userId } = auth();
@@ -14,7 +15,7 @@ function authenticateClerkId(): string {
   return userId;
 };
 
-export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | JobTypeWithStringId> {
+export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | JobTypeWithStringId | string> {
   const userId = authenticateClerkId();
 
   try {
@@ -26,22 +27,24 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
       ...values, clerkId: userId
     });
 
-    const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: JSON.stringify(job.createdAt), updatedAt: JSON.stringify(job.updatedAt) };
-    console.log(jobWithStringId);
+    const jobStringified: string = JSON.stringify(job);
 
-    console.log(typeof jobWithStringId._id);
+    // const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: JSON.stringify(job.createdAt), updatedAt: JSON.stringify(job.updatedAt) };
+    // console.log(jobWithStringId);
 
-    return jobWithStringId;
+    // console.log(typeof jobWithStringId._id);
+
+    return jobStringified;
   } catch (error) {
     console.log(error);
     return null;
   };
 };
 
-type AddValues = {
-  clerkId: string,
-  location?: string,
-}
+// type AddValues = {
+//   clerkId: string,
+//   location?: string,
+// }
 
 // export async function testMongoDB(): Promise<null> {
 //   const userId = authenticateClerkId();
