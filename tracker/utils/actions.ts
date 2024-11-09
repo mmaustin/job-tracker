@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
 // import dayjs from 'dayjs';
-import { JobType, CreateAndEditJobType, createAndEditJobSchema, JobTypeWithStringId} from './types';
+import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types';
 
 
 function authenticateClerkId(): string {
@@ -15,7 +15,7 @@ function authenticateClerkId(): string {
   return userId;
 };
 
-export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | JobTypeWithStringId | string> {
+export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | string> {
   const userId = authenticateClerkId();
 
   try {
@@ -85,7 +85,7 @@ export async function getAllJobsAction({
   page = 1,
   limit = 10,
 }: GetAllJobsActionTypes): Promise<{
-  jobs: JobTypeWithStringId[] | string[];
+  jobs: string[];
   count: number;
   page: number;
   totalPages: number;

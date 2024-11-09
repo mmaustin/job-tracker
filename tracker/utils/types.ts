@@ -4,8 +4,6 @@ import * as z from 'zod';
 
 export type JobType = {
   _id: string;
-  // _id: Types.ObjectId;
-  //or _id: ObjectId;
   createdAt: Date;
   updatedAt: Date;
   clerkId: string;
@@ -16,17 +14,17 @@ export type JobType = {
   mode: string;
 };
 
-export type JobTypeWithStringId = {
-  _id: string;
-  createdAt: Date | string;
-  updatedAt: Date | string;
-  clerkId: string;
-  position: string;
-  company: string;
-  location: string;
-  status: string;
-  mode: string;
-};
+// export type JobTypeWithStringId = {
+//   _id: string;
+//   createdAt: Date | string;
+//   updatedAt: Date | string;
+//   clerkId: string;
+//   position: string;
+//   company: string;
+//   location: string;
+//   status: string;
+//   mode: string;
+// };
 
 
 export enum JobStatus {
