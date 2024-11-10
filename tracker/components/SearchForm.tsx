@@ -9,6 +9,10 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from ".
 
 function SearchForm() {
 
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') || '';
+  const jobStatus = searchParams.get('jobStatus') || 'all';
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -22,14 +26,14 @@ function SearchForm() {
     params.set('search', search);
     params.set('jobStatus', jobStatus);
 
-    router.push(`${pathname} ? ${params.toString}`)
+    router.push(`${pathname}?${params.toString()}`)
     
   }
 
   return (
     <form onSubmit={handleSubmit} className="bg-muted mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3 gap-4 rounded-lg">
-      <Input className="bg-background" type="text" placeholder="Search Jobs" name="search" />
-      <Select name="jobStatus">
+      <Input className="bg-background" type="text" placeholder="Search Jobs" name="search" defaultValue={search} />
+      <Select name="jobStatus" defaultValue={jobStatus}>
         <SelectTrigger className="bg-background">
           <SelectValue />
         </SelectTrigger>
