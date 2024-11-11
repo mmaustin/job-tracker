@@ -3,7 +3,8 @@
 
 import { getAllJobsAction } from "@/utils/actions";
 import { useQuery } from "@tanstack/react-query";
-import {JobType} from '@/utils/types'
+import {JobType} from '@/utils/types';
+import JobCard from "./JobCard";
 
 
 function JobsList() {
@@ -20,7 +21,8 @@ function JobsList() {
     //parsedJobs = parsed
   };
 
-  console.log(parsedJobs)
+  console.log(parsedJobs?.length)
+  //if(isPending)
   // const parsedJobs = data?.jobs.map(job => {
   //   if(job){
   //     return JSON.parse(job);
@@ -32,8 +34,8 @@ function JobsList() {
     <div>
       {
         parsedJobs ?
-        parsedJobs.map((j)=>{
-          return <p key={j._id}>{j.position}</p>
+        parsedJobs.map((job)=>{
+          return <JobCard key={job._id} job={job} />
         }) : <p className="capitalize">there are no jobs!</p>
       }
       {/* {parsedJobs?.map((j,i)=>{

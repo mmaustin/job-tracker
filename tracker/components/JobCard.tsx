@@ -5,7 +5,7 @@ import {JobType} from '@/utils/types';
 function JobCard({job}: {job: JobType}) {
 
   return (
-    <div>JobCard</div>
+    <div className='capitalize'>{job.location}</div>
   )
 }
 export default JobCard;
