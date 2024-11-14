@@ -27,21 +27,21 @@ function JobsList() {
       return JSON.parse(job);
     });
   } else {
-    parsedJobs = undefined
+    parsedJobs = [];
   }
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
-  if (!parsedJobs) return <h2 className="text-xl">No Jobs Found . . . </h2>
+  if (parsedJobs.length < 1 ) return <h2 className="text-xl">No Jobs Found . . . </h2>
 
   return (
     <>
       <div className="grid md:grid-cols-2 gap-8">
         {
-          // parsedJobs ?
+          //parsedJobs !== undefined && parsedJobs.length > 0 ?
           parsedJobs.map((job) => {
             return <JobCard key={job._id} job={job} />
           })
-          // : <h2 className="text-xl">No Jobs Found . . . </h2>
+          //: <h2 className="text-xl">No Jobs Found . . . </h2>
         }
       </div>
     </>
