@@ -5,12 +5,20 @@ import { getAllJobsAction } from "@/utils/actions";
 import { useQuery } from "@tanstack/react-query";
 import {JobType} from '@/utils/types';
 import JobCard from "./JobCard";
+import { useSearchParams } from "next/navigation";
 
 
 function JobsList() {
+
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') || '';
+  const jobStatus = searchParams.get('jobStatus') || 'all';
+
+  const pageNumber = Number(searchParams.get('page')) || 1;
+
   const {data, isPending} = useQuery({
-    queryKey: ['jobs'],
-    queryFn: () => getAllJobsAction({}),
+    queryKey: ['jobs', search, jobStatus, pageNumber],
+    queryFn: () => getAllJobsAction({search, jobStatus, page: pageNumber}),
   })
 
   let parsedJobs: JobType[] | undefined;
@@ -18,30 +26,23 @@ function JobsList() {
     parsedJobs = data.jobs.map(job => {
       return JSON.parse(job);
     });
-    //parsedJobs = parsed
   };
 
-  console.log(parsedJobs?.length)
-  //if(isPending)
-  // const parsedJobs = data?.jobs.map(job => {
-  //   if(job){
-  //     return JSON.parse(job);
-  //   }
-  // });
-  // console.log(parsedJobs);
+  if(isPending) return <h2 className="text-xl">Please Wait . . . </h2>
+  if(!parsedJobs) return <h2 className="text-xl">No Jobs Found . . . </h2>
   
   return (
-    <div>
+    <>
+    <div className="grid md:grid-cols-2 gap-8">
       {
-        parsedJobs ?
+        // parsedJobs ?
         parsedJobs.map((job)=>{
           return <JobCard key={job._id} job={job} />
-        }) : <p className="capitalize">there are no jobs!</p>
+        }) 
+        // : <h2 className="text-xl">No Jobs Found . . . </h2>
       }
-      {/* {parsedJobs?.map((j,i)=>{
-        return <p key={i}>{j.position}</p>
-      })} */}
     </div>
+    </>
   )
 }
 export default JobsList;
