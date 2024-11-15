@@ -14,6 +14,11 @@ export type JobType = {
   mode: string;
 };
 
+export type DeletedQueryType = {
+  acknowledged: boolean,
+  deletedCount: number
+};
+
 // export type JobTypeWithStringId = {
 //   _id: string;
 //   createdAt: Date | string;

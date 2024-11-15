@@ -6,7 +6,7 @@ import { auth } from "@clerk/nextjs/server";
 import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
 // import dayjs from 'dayjs';
-import { JobType, CreateAndEditJobType, createAndEditJobSchema } from './types';
+import { JobType, CreateAndEditJobType, createAndEditJobSchema, DeletedQueryType } from './types';
 
 
 function authenticateClerkId(): string {
@@ -118,3 +118,15 @@ export async function getAllJobsAction({
   }
 };
 
+export async function deleteJobAction(id: string): Promise<DeletedQueryType | null> {
+  const userId = authenticateClerkId();
+
+  try {
+    const deletedQueryObject : DeletedQueryType = await Job.deleteOne({_id: id, clerkId: userId});
+    console.log(deletedQueryObject);
+    
+    return deletedQueryObject;
+  } catch (error) {
+    return null;
+  }
+}
