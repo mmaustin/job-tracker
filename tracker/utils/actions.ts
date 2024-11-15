@@ -119,11 +119,12 @@ export async function getAllJobsAction({
 };
 
 export async function deleteJobAction(id: string): Promise<DeletedQueryType | null> {
+  
   const userId = authenticateClerkId();
 
   try {
+    connectToDB();
     const deletedQueryObject : DeletedQueryType = await Job.deleteOne({_id: id, clerkId: userId});
-    console.log(deletedQueryObject);
     
     return deletedQueryObject;
   } catch (error) {

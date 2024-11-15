@@ -1,17 +1,7 @@
-import { getAllJobsAction } from "@/utils/actions";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
 
 const StatsPage = async () => {
-  const returnedJobs = await getAllJobsAction({});
-
-  const returnedParsedJobs: string[] = returnedJobs.jobs.map(job => {
-    if(typeof job === 'string'){
-      return JSON.parse(job);
-    };
-  });
-
-  console.log(returnedParsedJobs);
-  
 
   return (
     <div>Stats Page</div>
