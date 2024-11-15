@@ -33,7 +33,7 @@ function JobCard({job}: {job: JobType}) {
         <Button asChild size="sm" >
           <Link href={`/jobs/${job._id}`} >edit</Link>
         </Button>
-        <DeleteJobBtn />
+        <DeleteJobBtn id={job._id} />
       </CardFooter>
     </Card>
   )
