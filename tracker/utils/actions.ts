@@ -24,7 +24,7 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
 
     await connectToDB();
     const job: JobType = await Job.create({
-      ...values, clerkId: userId
+      ...values, clerkId: userId, 
     });
 
     const jobStringified: string = JSON.stringify(job);
@@ -132,7 +132,7 @@ export async function deleteJobAction(id: string): Promise<DeletedQueryType | nu
   }
 };
 
-export async function getSingleAuthor({id}: {id: string}): Promise<JobType | null>{
+export async function getSingleJobAction(id: string): Promise<JobType | null> {
   const userId = authenticateClerkId();
   let job: JobType | null;
 
@@ -145,7 +145,7 @@ export async function getSingleAuthor({id}: {id: string}): Promise<JobType | nul
     job = null;
   };
 
-  if(!job){
+  if (!job) {
     redirect('/jobs');
   };
   return job;
