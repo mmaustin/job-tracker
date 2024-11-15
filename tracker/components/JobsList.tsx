@@ -21,7 +21,7 @@ function JobsList() {
     queryFn: () => getAllJobsAction({ search, jobStatus, page: pageNumber }),
   })
 
-  let parsedJobs: JobType[] | undefined | [];
+  let parsedJobs: JobType[] | JobType | undefined | [];
   if (data) {
     parsedJobs = data.jobs.map(job => {
       return JSON.parse(job);

@@ -130,4 +130,23 @@ export async function deleteJobAction(id: string): Promise<DeletedQueryType | nu
   } catch (error) {
     return null;
   }
-}
+};
+
+export async function getSingleAuthor({id}: {id: string}): Promise<JobType | null>{
+  const userId = authenticateClerkId();
+  let job: JobType | null;
+
+  try {
+    await connectToDB();
+
+    job = await Job.findOne({ _id: id, clerkId: userId });
+
+  } catch (error) {
+    job = null;
+  };
+
+  if(!job){
+    redirect('/jobs');
+  };
+  return job;
+};
