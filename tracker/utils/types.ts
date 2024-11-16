@@ -19,18 +19,6 @@ export type DeletedQueryType = {
   deletedCount: number
 };
 
-// export type JobTypeWithStringId = {
-//   _id: string;
-//   createdAt: Date | string;
-//   updatedAt: Date | string;
-//   clerkId: string;
-//   position: string;
-//   company: string;
-//   location: string;
-//   status: string;
-//   mode: string;
-// };
-
 
 export enum JobStatus {
   Pending = 'pending',

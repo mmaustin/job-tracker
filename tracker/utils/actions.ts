@@ -22,17 +22,13 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
 
     createAndEditJobSchema.parse(values);
 
+
     await connectToDB();
     const job: JobType = await Job.create({
-      ...values, clerkId: userId, 
+      ...values, clerkId: userId,
     });
 
     const jobStringified: string = JSON.stringify(job);
-
-    // const jobWithStringId: JobTypeWithStringId = { clerkId: job.clerkId, position: job.position, company: job.company, location: job.location, status: job.status, mode: job.mode, _id: job._id.toString(), createdAt: JSON.stringify(job.createdAt), updatedAt: JSON.stringify(job.updatedAt) };
-    // console.log(jobWithStringId);
-
-    // console.log(typeof jobWithStringId._id);
 
     return jobStringified;
   } catch (error) {
@@ -150,3 +146,26 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
   };
   return job;
 };
+
+export async function updateJobAction(id: string, { values }: { values: { position: string, company: string, location: string, status: string, mode: string } }): Promise<string | null> {
+  const userId = authenticateClerkId();
+
+  try {
+    await connectToDB();
+
+    // const destructuredValues: string[] = Object.values(values);
+    // const [position, company, location, status, mode] = [...destructuredValues];
+
+    const job: JobType | null = await Job.findOneAndUpdate({ _id: id, clerkId: userId }, { $set: { ...values } }, { new: true });
+
+    const jobStringified: string = JSON.stringify(job);
+    console.log(jobStringified);
+
+    return jobStringified;
+  } catch (error) {
+    return null
+  }
+}
+
+// const a: string[] = Object.values(values);
+// const [position, company, location, status, mode] = [...a];
