@@ -147,7 +147,7 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
   return job;
 };
 
-export async function updateJobAction(id: string, { values }: { values: { position: string, company: string, location: string, status: string, mode: string } }): Promise<string | null> {
+export async function updateJobAction(id: string, values: CreateAndEditJobType): Promise<string | null> {
   const userId = authenticateClerkId();
 
   try {
@@ -167,5 +167,7 @@ export async function updateJobAction(id: string, { values }: { values: { positi
   }
 }
 
-// const a: string[] = Object.values(values);
-// const [position, company, location, status, mode] = [...a];
+// const destructuredValues: string[] = Object.values(values);
+// const [position, company, location, status, mode] = [...destructuredValues];
+
+// { values }: { values: { position: string, company: string, location: string, status: string, mode: string } }
