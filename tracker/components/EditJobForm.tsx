@@ -15,6 +15,7 @@ import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import { getSingleJobAction, updateJobAction } from '@/utils/actions';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/hooks/use-toast';
+import { JobType } from '@/utils/types';
 
 function EditJobForm({ jobId }: { jobId: string }) {
   const queryClient = useQueryClient();
@@ -26,6 +27,7 @@ function EditJobForm({ jobId }: { jobId: string }) {
     queryFn: () => getSingleJobAction(jobId),
   });
 
+  
   const { mutate, isPending } = useMutation({
     mutationFn: (values: CreateAndEditJobType) =>
       updateJobAction(jobId, values),
@@ -43,15 +45,24 @@ function EditJobForm({ jobId }: { jobId: string }) {
       router.push('/jobs');
     },
   });
+  
+  let parsedData: JobType | null;
+
+  if (typeof data === 'string'){
+    parsedData = JSON.parse(data);
+  } else {
+    parsedData = null;
+  };
+  
 
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
     defaultValues: {
-      position: data?.position || '',
-      company: data?.company || '',
-      location: data?.location || '',
-      status: (data?.status as JobStatus) || JobStatus.Pending,
-      mode: (data?.mode as JobMode) || JobMode.FullTime,
+      position: parsedData?.position || '',
+      company: parsedData?.company || '',
+      location: parsedData?.location || '',
+      status: (parsedData?.status as JobStatus) || JobStatus.Pending,
+      mode: (parsedData?.mode as JobMode) || JobMode.FullTime,
     },
   });
 

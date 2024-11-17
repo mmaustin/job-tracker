@@ -128,7 +128,7 @@ export async function deleteJobAction(id: string): Promise<DeletedQueryType | nu
   }
 };
 
-export async function getSingleJobAction(id: string): Promise<JobType | string | null> {
+export async function getSingleJobAction(id: string): Promise<string | null> {
   const userId = authenticateClerkId();
   let job: JobType | null;
 
@@ -159,7 +159,6 @@ export async function updateJobAction(id: string, values: CreateAndEditJobType):
     const job: JobType | null = await Job.findOneAndUpdate({ _id: id, clerkId: userId }, { $set: { ...values } }, { new: true });
 
     const jobStringified: string = JSON.stringify(job);
-    console.log(jobStringified);
 
     return jobStringified;
   } catch (error) {
