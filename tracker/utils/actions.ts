@@ -128,7 +128,7 @@ export async function deleteJobAction(id: string): Promise<DeletedQueryType | nu
   }
 };
 
-export async function getSingleJobAction(id: string): Promise<JobType | null> {
+export async function getSingleJobAction(id: string): Promise<JobType | string | null> {
   const userId = authenticateClerkId();
   let job: JobType | null;
 
@@ -144,7 +144,7 @@ export async function getSingleJobAction(id: string): Promise<JobType | null> {
   if (!job) {
     redirect('/jobs');
   };
-  return job;
+  return JSON.stringify(job);
 };
 
 export async function updateJobAction(id: string, values: CreateAndEditJobType): Promise<string | null> {
