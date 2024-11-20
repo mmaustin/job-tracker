@@ -164,6 +164,35 @@ export async function updateJobAction(id: string, values: CreateAndEditJobType):
   } catch (error) {
     return null
   }
+};
+
+export async function getStatsAction(): Promise<{
+  pending: number;
+  interview: number;
+  declined: number;
+}> {
+  const userId = authenticateClerkId();
+  // just to show Skeleton
+  // await new Promise((resolve) => setTimeout(resolve, 5000));
+  try {
+    const stats = await Job.aggregate([{ $match: { clerkId: 'user_2nRdwhhdlc0o0gYx5Qhvjh8TGSb' } },
+    { $group: { _id: "$status", count: { $count: {} } } }])
+
+    const statsObject = stats.reduce((acc, curr) => {
+      acc[curr.status] = curr._count.status;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const defaultStats = {
+      pending: 0,
+      declined: 0,
+      interview: 0,
+      ...statsObject,
+    };
+    return defaultStats;
+  } catch (error) {
+    redirect('/jobs');
+  }
 }
 
 // const destructuredValues: string[] = Object.values(values);
