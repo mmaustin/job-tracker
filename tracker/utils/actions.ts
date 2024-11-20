@@ -172,12 +172,15 @@ export async function getStatsAction(): Promise<{
   declined: number;
 }> {
   const userId = authenticateClerkId();
-  // just to show Skeleton
-  // await new Promise((resolve) => setTimeout(resolve, 5000));
+  console.log(userId);
+
+
   try {
-    const stats: {_id: string, count: number}[] = await Job.aggregate([{ $match: { clerkId: 'user_2nRdwhhdlc0o0gYx5Qhvjh8TGSb' } },
+    await connectToDB();
+
+    const stats: { _id: string, count: number }[] = await Job.aggregate([{ $match: { clerkId: userId } },
     { $group: { _id: "$status", count: { $count: {} } } }]);
-    
+
 
     const statsObject = stats.reduce((acc, curr) => {
       acc[curr._id] = curr.count;
@@ -190,7 +193,9 @@ export async function getStatsAction(): Promise<{
       interview: 0,
       ...statsObject,
     };
+
     return defaultStats;
+
   } catch (error) {
     redirect('/jobs');
   }
