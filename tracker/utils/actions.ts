@@ -5,7 +5,7 @@ import Job from "@/models/Job";
 import { auth } from "@clerk/nextjs/server";
 import { connectToDB } from "./db";
 import { redirect } from "next/navigation";
-// import dayjs from 'dayjs';
+import dayjs from 'dayjs';
 import { JobType, CreateAndEditJobType, createAndEditJobSchema, DeletedQueryType } from './types';
 
 
@@ -178,9 +178,12 @@ export async function getStatsAction(): Promise<{
   try {
     await connectToDB();
 
-    const stats: { _id: string, count: number }[] = await Job.aggregate([{ $match: { clerkId: userId } },
-    { $group: { _id: "$status", count: { $count: {} } } }]);
-
+    const stats: { _id: string, count: number }[] = await Job.aggregate(
+      [
+        { $match: { clerkId: userId } },
+        { $group: { _id: "$status", count: { $count: {} } } }
+      ]
+    );
 
     const statsObject = stats.reduce((acc, curr) => {
       acc[curr._id] = curr.count;
@@ -196,6 +199,36 @@ export async function getStatsAction(): Promise<{
 
     return defaultStats;
 
+  } catch (error) {
+    redirect('/jobs');
+  }
+};
+
+export async function getChartsDataAction(): Promise<
+  Array<{ date: string; count: number }>
+> {
+  const userId = authenticateClerkId();
+  const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
+  try {
+    await connectToDB();
+
+    const jobs = await Job.find({createdAt: {$gte: sixMonthsAgo}, clerkId: userId}).sort({ createdAt: 'desc' })
+
+    const monthlyApplications = jobs.reduce((acc, job) => {
+      const date = dayjs(job.createdAt).format('MMM YY');
+
+      const existingEntry = acc.find((entry) => entry.date === date);
+
+      if (existingEntry) {
+        existingEntry.count += 1;
+      } else {
+        acc.push({ date, count: 1 });
+      }
+
+      return acc;
+    }, [] as Array<{ date: string; count: number }>);
+
+    return monthlyApplications;
   } catch (error) {
     redirect('/jobs');
   }
