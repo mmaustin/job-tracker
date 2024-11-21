@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { getStatsAction } from "@/utils/actions";
+import { getChartsDataAction } from "@/utils/actions";
 
 
 
 
 const StatsPage = async () => {
-  const stats = await getStatsAction();
-  console.log(stats);
+  const chartData = await getChartsDataAction();
+  console.log(chartData);
   
   
   return (

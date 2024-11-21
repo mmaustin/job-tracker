@@ -209,6 +209,7 @@ export async function getChartsDataAction(): Promise<
 > {
   const userId = authenticateClerkId();
   const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
+  
   try {
     await connectToDB();
 
