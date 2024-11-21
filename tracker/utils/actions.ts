@@ -212,7 +212,7 @@ export async function getChartsDataAction(): Promise<
   try {
     await connectToDB();
 
-    const jobs = await Job.find({createdAt: {$gte: sixMonthsAgo}, clerkId: userId}).sort({ createdAt: 'desc' })
+    const jobs: JobType[] = await Job.find({ createdAt: { $gte: sixMonthsAgo }, clerkId: userId }).sort({ createdAt: 'desc' })
 
     const monthlyApplications = jobs.reduce((acc, job) => {
       const date = dayjs(job.createdAt).format('MMM YY');
