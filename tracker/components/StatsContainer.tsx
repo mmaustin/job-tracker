@@ -1,6 +1,4 @@
-
-
-
+'use client';
 
 function StatsContainer() {
   return (
@@ -8,3 +6,4 @@ function StatsContainer() {
   )
 }
 export default StatsContainer;
+
