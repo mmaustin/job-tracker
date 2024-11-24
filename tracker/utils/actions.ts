@@ -32,7 +32,6 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
 
     return jobStringified;
   } catch (error) {
-    console.log(error);
     return null;
   };
 };
