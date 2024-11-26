@@ -95,18 +95,24 @@ export async function getAllJobsAction({
       queryObj = { ...queryObj, status: jobStatus };
     };
 
+    const skipOver = (page - 1) * limit;
 
     if (search) {
-      jobs = await Job.find(queryObj).or([{ company: search }, { position: search }]).sort({ createdAt: 'desc' });
+      jobs = await Job.find(queryObj).or([{ company: search }, { position: search }]).skip(skipOver).limit(limit).sort({ createdAt: 'desc' });
     } else {
-      jobs = await Job.find(queryObj).sort({ createdAt: 'desc' })
+      jobs = await Job.find(queryObj).skip(skipOver).limit(limit).sort({ createdAt: 'desc' });
     };
 
     jobs = jobs.map(job => {
       return JSON.stringify(job);
-    })
+    });
 
-    return { jobs, count: 0, page: 1, totalPages: 0 };
+    const count: number = await Job.find(queryObj).countDocuments();
+    console.log(count);
+
+    const totalPages = Math.ceil(count/limit);
+
+    return { jobs, count, page, totalPages };
   } catch (error) {
     console.error(error);
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
