@@ -5,11 +5,11 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "./ui/button";
 
 type ButtonContainerProps = {
-  currentPages: number,
+  currentPage: number,
   totalPages: number,
 };
 
-function ButtonContainer({ currentPages, totalPages }: ButtonContainerProps) {
+function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -30,7 +30,20 @@ function ButtonContainer({ currentPages, totalPages }: ButtonContainerProps) {
 
 
   return (
-    <div>ButtonContainer</div>
+        <div className='flex  gap-x-2'>
+      {pageButtons.map((page) => {
+        return (
+          <Button
+            key={page}
+            size='icon'
+            variant={currentPage === page ? 'default' : 'outline'}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </Button>
+        );
+      })}
+    </div>
   )
 }
 export default ButtonContainer
