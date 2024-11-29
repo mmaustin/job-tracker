@@ -30,6 +30,8 @@ function JobsList() {
     parsedJobs = [];
   }
 
+  
+
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
   if (parsedJobs.length < 1 ) return <h2 className="text-xl">No Jobs Found . . . </h2>
 
