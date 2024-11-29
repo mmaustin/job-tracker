@@ -40,8 +40,8 @@ function JobsList() {
   return (
     <>
       <div className='flex items-center justify-between mb-8'>
-        <h2 className='text-xl font-semibold capitalize '>
-          {count} jobs found
+        <h2 className='text-xl font-semibold'>
+          You have {count} Total Job(s)
         </h2>
         {totalPages < 2 ? null : (
           <ButtonContainer currentPage={page} totalPages={totalPages} />

@@ -108,7 +108,6 @@ export async function getAllJobsAction({
     });
 
     const count: number = await Job.find(queryObj).countDocuments();
-    console.log(count);
 
     const totalPages = Math.ceil(count/limit);
 

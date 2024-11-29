@@ -30,7 +30,7 @@ function ButtonContainer({ currentPage, totalPages }: ButtonContainerProps) {
 
 
   return (
-        <div className='flex  gap-x-2'>
+    <div className='flex  gap-x-2'>
       {pageButtons.map((page) => {
         return (
           <Button
