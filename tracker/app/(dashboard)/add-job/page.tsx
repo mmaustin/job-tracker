@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import CreateJobForm from "@/components/CreateJobForm";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 

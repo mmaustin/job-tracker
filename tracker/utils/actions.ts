@@ -36,31 +36,6 @@ export async function createJobAction(values: CreateAndEditJobType): Promise<Job
   };
 };
 
-// type AddValues = {
-//   clerkId: string,
-//   location?: string,
-// }
-
-// export async function testMongoDB(): Promise<null> {
-//   const userId = authenticateClerkId();
-//   let queryObj: AddValues = { clerkId: userId };
-
-//   try {
-
-//     await connectToDB();
-
-//     if (4 + 2 === 6) queryObj = { ...queryObj, location: "new york" };
-
-//     const job = await Job.aggregate([])//find(queryObj).or([{ company: "cleary" }, { position: "chef" }])
-
-//     console.log(job);
-
-//     return null;
-//   } catch (error) {
-//     console.log(error);
-//     return null;
-//   };
-// };
 
 type GetAllJobsActionTypes = {
   search?: string;
@@ -157,9 +132,6 @@ export async function updateJobAction(id: string, values: CreateAndEditJobType):
   try {
     await connectToDB();
 
-    // const destructuredValues: string[] = Object.values(values);
-    // const [position, company, location, status, mode] = [...destructuredValues];
-
     const job: JobType | null = await Job.findOneAndUpdate({ _id: id, clerkId: userId }, { $set: { ...values } }, { new: true });
 
     const jobStringified: string = JSON.stringify(job);
@@ -238,8 +210,3 @@ export async function getChartsDataAction(): Promise<
     redirect('/jobs');
   }
 }
-
-// const destructuredValues: string[] = Object.values(values);
-// const [position, company, location, status, mode] = [...destructuredValues];
-
-// { values }: { values: { position: string, company: string, location: string, status: string, mode: string } }

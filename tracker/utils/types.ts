@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { ObjectId, Types } from 'mongoose';
+
 import * as z from 'zod';
 
 export type JobType = {
