@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { UserButton } from "@clerk/nextjs";
 import LinksDropdown from "./LinksDropdown";
 import ThemeToggle from "./ThemeToggle";

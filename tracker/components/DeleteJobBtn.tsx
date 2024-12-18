@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Button } from "./ui/button";
 import { useToast } from "@/hooks/use-toast";

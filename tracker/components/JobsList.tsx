@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 'use client'
 
 import { getAllJobsAction } from "@/utils/actions";
@@ -49,11 +49,9 @@ function JobsList() {
       </div>
       <div className="grid md:grid-cols-2 gap-8">
         {
-          //parsedJobs !== undefined && parsedJobs.length > 0 ?
           parsedJobs.map((job) => {
             return <JobCard key={job._id} job={job} />
           })
-          //: <h2 className="text-xl">No Jobs Found . . . </h2>
         }
       </div>
     </>

@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import { Control } from 'react-hook-form';
 
 import {
@@ -20,6 +19,7 @@ import { Input } from './ui/input';
 
 type CustomFormFieldProps = {
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
 };
 
@@ -43,6 +43,7 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
 
 type CustomFormSelectProps = {
   name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
   items: string[];
   labelText?: string;
