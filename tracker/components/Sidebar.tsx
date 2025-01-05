@@ -12,7 +12,7 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className="py-4 px-8 bg-background h-full">
+    <aside className="py-4 px-8 bg-muted border-r border-r-blue-600 h-full">
       <h2 className="font-bold display flex justify-center text-blue-600 text-2xl">Just One</h2>
       <div className="flex flex-col mt-20 gap-y-4">
         {links.map(link => {
