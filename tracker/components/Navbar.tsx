@@ -7,7 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   return (
-    <nav className="py-4 sm:px-16 md:px-24 px-4 flex items-center justify-between border-b border-b-blue-600">
+    <nav className="py-4 sm:px-16 md:px-24 px-4 bg-muted flex items-center justify-between">
       <div className="">
         <LinksDropdown />
       </div>
