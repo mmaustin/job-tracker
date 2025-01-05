@@ -22,9 +22,9 @@ function StatsContainer() {
 
   return (
     <div className="grid md:grid-cols-2 gap-4 lg:grid-cols-3">
-      <StatsCard title='pending jobs' value={data?.pending || 0} />
-      <StatsCard title='pending jobs' value={data?.interview || 0} />
-      <StatsCard title='pending jobs' value={data?.declined || 0} />
+      <StatsCard title='pending' value={data?.pending || 0} />
+      <StatsCard title='interviews' value={data?.interview || 0} />
+      <StatsCard title='declined' value={data?.declined || 0} />
     </div>
   )
 }
