@@ -17,11 +17,11 @@ function JobCard({job}: {job: JobType}) {
   return (
     <Card className='bg-muted' >
       <CardHeader>
-        <CardTitle>{job.position}</CardTitle>
-        <CardDescription>{job.company}</CardDescription>
+        <CardTitle >{job.position}</CardTitle>
+        <CardDescription >{job.company}</CardDescription>
       </CardHeader>
       <Separator />
-      <CardContent className='mt-4 grid grid-cols-2 gap-4'>
+      <CardContent className='mt-4 grid grid-cols-2 gap-4 capitalize font-serif'>
         <JobInfo icon={<Briefcase />} text={job.mode}/>
         <JobInfo icon={<MapPin />} text={job.location}/>
         <JobInfo icon={<CalendarDays />} text={date}/>

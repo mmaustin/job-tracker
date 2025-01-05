@@ -15,13 +15,13 @@ export default function Home() {
       <div className="mt-32 flex justify-center items-center">
         <div className="max-w-3xl flex flex-col justify-center items-center">
           <h1 className="text-3xl md:text-5xl font-bold uppercase border-t-2 border-dotted text-center">
-            Novel Ideas
-            <p className="py-6 text-sm md:text-xl font-normal leading-loose normal-case border-t-2 border-dotted">Stop relying on sticky notes, napkins, and your &quot;perfect&quot; memory. Store all of your notes here.  Your book will thank you.</p>
+            Just One
+            <p className="py-6 text-sm md:text-xl font-normal leading-loose normal-case border-t-2 border-dotted">You may have sent out hundreds, thousands of applications and resumes.  While frustrating, remember all it takes is one!  Track all of your applications in the Just One job tracker.</p>
           </h1>
           <div className="flex flex-wrap justify-center items-center">
             <Button size={'lg'} asChild>
         <Link href={'/add-job'} >
-          Get Started
+          Start Tracking
         </Link>
       </Button>
             {/* <div className="tooltip tooltip-bottom mt-10" data-tip="Outlook Is Not Recommended. May Experience Redirect Issues On Login.">
