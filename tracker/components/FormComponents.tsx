@@ -32,7 +32,7 @@ export function CustomFormField({ name, control }: CustomFormFieldProps) {
         <FormItem>
           <FormLabel className='capitalize'>{name}</FormLabel>
           <FormControl>
-            <Input {...field} className='bg-background '/>
+            <Input {...field} className='bg-background capitalize'/>
           </FormControl>
           <FormMessage />
         </FormItem>

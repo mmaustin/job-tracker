@@ -9,9 +9,8 @@ export default function Home() {
   return (
     <div className="mx-5 flex flex-col justify-center items-center">
       <div className="rounded-lg mt-10">
-        {/* <h2 className="text-xs font-serif"></h2> */}
         <Image
-          className="h-[200px] w-[300px] object-contain border border-base-300/50 hover:border-neutral-800 rounded-lg bg-black"
+          className="h-[175px] w-[275px] sm:h-[200px] sm:w-[300px] object-contain border border-base-300/50 hover:border-neutral-800 rounded-lg bg-black"
           src={jobCard}
           alt="create author profile form"
           priority
