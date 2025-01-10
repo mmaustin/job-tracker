@@ -32,7 +32,7 @@ function SearchForm() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-muted mb-16 p-8 grid sm:grid-cols-2 md:grid-cols-3 gap-4 rounded-lg">
-      <p className="flex justify-center items-center m-0 border rounded-lg ">Search By Category</p>
+      <p className="flex justify-center items-center m-0 border rounded-lg bg-background font-serif">Search By Category</p>
       {/* Temporarily hidden */}
       <input className="bg-background " type="text" placeholder="Search Jobs" name="search" hidden defaultValue={search} />
       <Select name="jobStatus" defaultValue={jobStatus}>
