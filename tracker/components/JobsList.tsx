@@ -29,19 +29,20 @@ function JobsList() {
   } else {
     parsedJobs = [];
   }
-
+  
   const count = data?.count || 0;
   const page = data?.page || 0;
   const totalPages = data?.totalPages || 0;
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
-  if (parsedJobs.length < 1) return <h2 className="text-xl">No Jobs Found . . . </h2>
+  if (parsedJobs.length < 1) return <h2 className="text-xl font-semibold font-serif">No Jobs Found . . . </h2>
 
   return (
     <>
       <div className='flex items-center justify-between mb-8'>
-        <h2 className='text-xl font-semibold'>
-          You have {count} Total Job(s)
+        <h2 className='text-xl font-semibold font-serif'>
+          {count <= 1 ? `Search Total: ${count} Job` : `Search Total: ${count} Jobs`}
+          {/* You have {count} Total Job(s) */}
         </h2>
         {totalPages < 2 ? null : (
           <ButtonContainer currentPage={page} totalPages={totalPages} />
