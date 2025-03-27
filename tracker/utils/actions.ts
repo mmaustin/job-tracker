@@ -184,12 +184,12 @@ export async function getChartsDataAction(): Promise<
   Array<{ date: string; count: number }>
 > {
   const userId = authenticateClerkId();
-  const sixMonthsAgo = dayjs().subtract(6, 'month').toDate();
+  const threeMonthsAgo = dayjs().subtract(3, 'month').toDate();
   
   try {
     await connectToDB();
 
-    const jobs: JobType[] = await Job.find({ createdAt: { $gte: sixMonthsAgo }, clerkId: userId }).sort({ createdAt: 'desc' })
+    const jobs: JobType[] = await Job.find({ createdAt: { $gte: threeMonthsAgo }, clerkId: userId }).sort({ createdAt: 'desc' })
 
     const monthlyApplications = jobs.reduce((acc, job) => {
       const date = dayjs(job.createdAt).format('MMM YY');
