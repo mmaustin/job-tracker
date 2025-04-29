@@ -9,6 +9,7 @@ const DemoNavbar = () => {
       </div>
       <div className="flex items-center gap-x-4">
         <ThemeToggle />
+        <p>Demo N. Strate</p>
       </div>
     </nav>
   )
