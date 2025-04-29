@@ -5,7 +5,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { AlignLeft } from 'lucide-react';
 import { demoLinks } from "@/utils/demoLinks";
 
-const LinksDropdown = () => {
+const DemoLinksDropdown = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="md:hidden">
@@ -28,4 +28,4 @@ const LinksDropdown = () => {
     </DropdownMenu>
   )
 }
-export default LinksDropdown;
+export default DemoLinksDropdown;
