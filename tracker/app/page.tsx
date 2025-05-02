@@ -24,15 +24,18 @@ export default function Home() {
             Just One
             <p className="py-6 text-sm md:text-xl font-normal leading-loose normal-case border-t-2 border-dotted">You may have sent out hundreds, thousands of applications and resumes.  While frustrating, remember all it takes is one!  Track all of your applications in the Just One job tracker.</p>
           </h1>
-          <div className="flex flex-wrap justify-center items-center">
-            <Button size={'lg'} asChild>
+          <div className="flex flex-wrap justify-center items-center gap-4">
+            <Button size={'sm'} asChild>
               <Link href={'/add-job'} >
                 Start Tracking
               </Link>
             </Button>
-            {/* <div className="tooltip tooltip-bottom mt-10" data-tip="Outlook Is Not Recommended. May Experience Redirect Issues On Login.">
-              <IoInformationCircle className="m-0" />
-            </div> */}
+            <Button size={'sm'} asChild>
+              <Link href={'/under-construction'} >
+                Demo Mode
+              </Link>
+            </Button>
+            
           </div>
         </div>
       </div>
