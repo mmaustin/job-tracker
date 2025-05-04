@@ -1,4 +1,3 @@
-
 'use client'
 
 import { demoLinks } from "@/utils/demoLinks";
@@ -6,7 +5,6 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
 import { FaHome } from "react-icons/fa";
-
 
 
 const DemoSidebar = () => {
@@ -28,10 +26,10 @@ const DemoSidebar = () => {
         </div> :
         <div className="flex flex-col mt-20 gap-y-4">
           <Button asChild variant={'secondary'}>
-              <Link href={'/'} className="flex items-center gap-x-2">
-                <FaHome /> <span className="capitalize">Home</span>
-              </Link>
-            </Button>
+            <Link href={'/'} className="flex items-center gap-x-2">
+              <FaHome /> <span className="capitalize">Home</span>
+            </Link>
+          </Button>
         </div>
       }
     </aside>
