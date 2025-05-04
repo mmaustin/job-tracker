@@ -1,8 +1,8 @@
 import { MdConstruction } from "react-icons/md";
 
+const UnderConstruction = async () => {
+  
 
-
-const UnderConstruction = () => {
   return (
     <div className="h-96 w-full flex flex-col justify-center items-center gap-8">
       <div className="capitalize text-xl font-serif font-semibold">demonstration mode is under construction</div>
