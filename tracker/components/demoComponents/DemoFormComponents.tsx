@@ -42,3 +42,49 @@ export function CustomFormField({ name, control }: DemoCustomFormFieldProps) {
     />
   );
 };
+
+
+type DemoCustomFormSelectProps = {
+  name: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  control: Control<any>;
+  items: string[];
+  labelText?: string;
+};
+
+export function DemoCustomFormSelect({
+  name,
+  control,
+  items,
+  labelText,
+}: DemoCustomFormSelectProps) {
+  return (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem>
+          <FormLabel className='capitalize'>{labelText || name}</FormLabel>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <FormControl>
+              <SelectTrigger className='bg-background'>
+                <SelectValue />
+              </SelectTrigger>
+            </FormControl>
+            <SelectContent>
+              {items.map((item) => {
+                return (
+                  <SelectItem key={item} value={item} >
+                    {item}
+                  </SelectItem>
+                );
+              })}
+            </SelectContent>
+          </Select>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
+}
+export default DemoCustomFormSelect;
