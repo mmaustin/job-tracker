@@ -8,7 +8,8 @@ import dayjs from "dayjs";
 import { DemoJobType, CreateAndEditJobType, createAndEditJobSchema, DeletedQueryType } from './demoTypes';
 
 export async function createDemoJobAction(values: CreateAndEditJobType): Promise<DemoJobType | null | string> {
-
+  console.log(values);
+  
   try {
 
     createAndEditJobSchema.parse(values);

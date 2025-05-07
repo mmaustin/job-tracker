@@ -17,7 +17,7 @@ function authenticateClerkId(): string {
 
 export async function createJobAction(values: CreateAndEditJobType): Promise<JobType | null | string> {
   const userId = authenticateClerkId();
-
+  
   try {
 
     createAndEditJobSchema.parse(values);
