@@ -13,7 +13,6 @@ export async function createDemoJobAction(values: CreateAndEditJobType): Promise
 
     createAndEditJobSchema.parse(values);
 
-
     await connectToDB();
     const job: DemoJobType = await DemoJob.create({
       ...values

@@ -25,7 +25,7 @@ type DemoCustomFormFieldProps = {
   control: Control<any>;
 };
 
-export function CustomFormField({ name, control }: DemoCustomFormFieldProps) {
+export function DemoCustomFormField({ name, control }: DemoCustomFormFieldProps) {
   return (
     <FormField
       control={control}
