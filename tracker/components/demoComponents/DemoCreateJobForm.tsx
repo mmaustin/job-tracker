@@ -52,7 +52,27 @@ const DemoCreateJobForm = () => {
       };
 
   return (
-    <div>DemoCreateJobForm</div>
+    <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className=' p-8 rounded'>
+            <h2 className="capitalize font-semibold text-4xl mb-6">
+              add job
+            </h2>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 items-start">
+              <DemoCustomFormField name='position' control={form.control} />
+              <DemoCustomFormField name='company' control={form.control} />
+              <DemoCustomFormField name='location' control={form.control} />
+    
+              <DemoCustomFormSelect name='status' control={form.control} labelText='job status' items={Object.values(JobStatus)}
+              />
+              <DemoCustomFormSelect name='mode' control={form.control} labelText='job mode' items={Object.values(JobMode)}
+              />
+    
+              <Button type='submit' className='self-end capitalize' disabled={isPending}>
+                {isPending ? 'loading' : 'create job'}
+              </Button>
+            </div>
+          </form>
+        </Form>  
   )
-}
+};
 export default DemoCreateJobForm;
