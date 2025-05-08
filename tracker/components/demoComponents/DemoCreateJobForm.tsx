@@ -39,9 +39,9 @@ const DemoCreateJobForm = () => {
         return;
       };
       toast({ description: 'job created' });
-      queryClient.invalidateQueries({ queryKey: ['demo-jobs'] });
-      // queryClient.invalidateQueries({ queryKey: ['stats'] });
-      // queryClient.invalidateQueries({ queryKey: ['charts'] });
+      queryClient.invalidateQueries({ queryKey: ['jobs'] });
+      queryClient.invalidateQueries({ queryKey: ['stats'] });
+      queryClient.invalidateQueries({ queryKey: ['charts'] });
 
       router.push('/demo-jobs');
     }

@@ -1,4 +1,4 @@
-import DemoCreateJobForm from "@/components/CreateJobForm";
+import DemoCreateJobForm from "@/components/demoComponents/DemoCreateJobForm";
 import { dehydrate, HydrationBoundary, QueryClient } from "@tanstack/react-query";
 
 
