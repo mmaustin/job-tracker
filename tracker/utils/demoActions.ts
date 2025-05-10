@@ -41,12 +41,12 @@ export async function demoGetAllJobsAction({
   search, jobStatus, page, limit
 }: DemoGetAllJobsActionTypes): Promise<Array<string>> {
 
-  //let jobs: DemoJobType[] | Array<string> ;
+  //let jobs: DemoJobType[] | string[] ;
 
   try {
     await connectToDB();
 
-    const jobs: DemoJobType[] = await DemoJob.find({});
+    const jobs = await DemoJob.find({});
 
     const jobsAsStrings = jobs.map(job => {
       return JSON.stringify(job);
