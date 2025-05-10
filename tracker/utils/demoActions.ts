@@ -25,3 +25,15 @@ export async function createDemoJobAction(values: CreateAndEditJobType): Promise
     return null;
   };
 };
+
+type DemoGetAllJobsActionTypes = {
+  search?: string;
+  jobStatus?: string;
+  page?: number;
+  limit?: number;
+};
+
+type DemoQueryObjectValues = {
+  status?: string,
+};
+

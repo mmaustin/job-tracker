@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import JobsList from "@/components/JobsList";
 import SearchForm from "@/components/SearchForm";
 import { getAllJobsAction } from "@/utils/actions";
