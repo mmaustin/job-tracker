@@ -37,3 +37,25 @@ type DemoQueryObjectValues = {
   status?: string,
 };
 
+export async function demoGetAllJobsAction({
+  search, jobStatus, page, limit
+}: DemoGetAllJobsActionTypes): Promise<Array<string>> {
+
+  //let jobs: DemoJobType[] | Array<string> ;
+
+  try {
+    await connectToDB();
+
+    const jobs: DemoJobType[] = await DemoJob.find({});
+
+    const jobsAsStrings = jobs.map(job => {
+      return JSON.stringify(job);
+    });
+
+    return jobsAsStrings;
+
+  } catch (error) {
+    console.error(error);
+    return ['there', 'was', 'an', 'error'];
+  }
+}
