@@ -1,23 +1,32 @@
+import DemoJobList from "@/components/demoComponents/DemoJobList";
 import { demoGetAllJobsAction } from "@/utils/demoActions";
-
+import { dehydrate, QueryClient, HydrationBoundary } from "@tanstack/react-query";
 
 const JobsDemo = async () => {
 
-  let jobs = await demoGetAllJobsAction({});
-
-  if(jobs.length){
-    jobs = jobs.map(job => {
-      return JSON.parse(job);
+    const queryClient = new QueryClient();
+    await queryClient.prefetchQuery({
+      queryKey: ['jobs', '', 'all', 1],
+      queryFn: () => demoGetAllJobsAction({})
     });
-  } else {
-    return <p className="capitalize">there are no jobs</p>
-  };
 
-  console.log(jobs);
+  // let jobs = await demoGetAllJobsAction({});
+
+  // if(jobs.length){
+  //   jobs = jobs.map(job => {
+  //     return JSON.parse(job);
+  //   });
+  // } else {
+  //   return <p className="capitalize">there are no jobs</p>
+  // };
+
+  // console.log(jobs);
   
 
   return (
-    <div>JobsDemo</div>
+    <HydrationBoundary state={dehydrate(queryClient)} >
+      <DemoJobList />
+    </HydrationBoundary>
   )
 }
 export default JobsDemo;

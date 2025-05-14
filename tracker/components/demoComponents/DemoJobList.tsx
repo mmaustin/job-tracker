@@ -13,9 +13,9 @@ const DemoJobList = () => {
   const jobStatus = 'all';
   const pageNumber = 1;
 
-  const {data, isPending} = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['jobs', search, jobStatus, pageNumber],
-    queryFn: () => demoGetAllJobsAction({search, jobStatus, page: pageNumber}),
+    queryFn: () => demoGetAllJobsAction({ search, jobStatus, page: pageNumber }),
   });
 
   let parsedJobs: DemoJobType[] | DemoJobType | undefined | [];
@@ -32,7 +32,16 @@ const DemoJobList = () => {
   if (parsedJobs.length < 1) return <h2 className="text-xl font-semibold font-serif">No Jobs Found . . . </h2>
 
   return (
-    <div>DemoJobList</div>
+    <>
+      <div className="grid md:grid-cols-2 gap-8">
+        {
+          parsedJobs.map((job) => {
+            return <DemoJobCard key={job._id} job={job} />
+          })
+        }
+      </div>
+    </>
+
   )
-}
+};
 export default DemoJobList;
