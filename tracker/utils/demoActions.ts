@@ -38,15 +38,22 @@ type DemoQueryObjectValues = {
 };
 
 export async function demoGetAllJobsAction({
-  search, jobStatus, page, limit
+  search, jobStatus, page = 1, limit = 10
 }: DemoGetAllJobsActionTypes): Promise<Array<string>> {
 
-  //let jobs: DemoJobType[] | string[] ;
+  let queryObj: DemoQueryObjectValues = {};
 
+  
   try {
     await connectToDB();
+    
+    if (jobStatus && jobStatus !== 'all') {
+      queryObj = { ...queryObj, status: jobStatus };
+    };
+    
+    const skipOver = (page - 1) * limit;
 
-    const jobs = await DemoJob.find({});
+    const jobs = await DemoJob.find(queryObj).skip(skipOver).limit(limit).sort({ createdAt: 'desc' });
 
     const jobsAsStrings = jobs.map(job => {
       return JSON.stringify(job);
