@@ -21,7 +21,7 @@ const DemoJobList = () => {
   let parsedJobs: DemoJobType[] | DemoJobType | undefined | [];
 
   if (data) {
-    parsedJobs = data.map(job => {
+    parsedJobs = data.jobs.map(job => {
       return JSON.parse(job);
     });
   } else {

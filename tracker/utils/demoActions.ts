@@ -67,10 +67,14 @@ export async function demoGetAllJobsAction({
       return JSON.stringify(job);
     });
 
-    return jobsAsStrings;
+    const count: number = await DemoJob.find(queryObj).countDocuments();
+
+    const totalPages = Math.ceil(count/limit);
+
+    return { jobs, count, page, totalPages };
 
   } catch (error) {
     console.error(error);
-    return ['there', 'was', 'an', 'error'];
+    return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
 }
