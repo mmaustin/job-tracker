@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { DemoJobType, CreateAndEditJobType, createAndEditJobSchema, DeletedQueryType } from './demoTypes';
 
 export async function createDemoJobAction(values: CreateAndEditJobType): Promise<DemoJobType | null | string> {
-  
+
   try {
 
     createAndEditJobSchema.parse(values);
@@ -39,23 +39,31 @@ type DemoQueryObjectValues = {
 
 export async function demoGetAllJobsAction({
   search, jobStatus, page = 1, limit = 10
-}: DemoGetAllJobsActionTypes): Promise<Array<string>> {
+}: DemoGetAllJobsActionTypes): Promise<
+  {
+    jobs: string[];
+    count: number;
+    page: number;
+    totalPages: number;
+  }
+> {
 
   let queryObj: DemoQueryObjectValues = {};
 
-  
+  let jobs: DemoJobType[] | string[];
+
   try {
     await connectToDB();
-    
+
     if (jobStatus && jobStatus !== 'all') {
       queryObj = { ...queryObj, status: jobStatus };
     };
-    
+
     const skipOver = (page - 1) * limit;
 
-    const jobs = await DemoJob.find(queryObj).skip(skipOver).limit(limit).sort({ createdAt: 'desc' });
+    jobs = await DemoJob.find(queryObj).skip(skipOver).limit(limit).sort({ createdAt: 'desc' });
 
-    const jobsAsStrings = jobs.map(job => {
+    jobs = jobs.map(job => {
       return JSON.stringify(job);
     });
 
