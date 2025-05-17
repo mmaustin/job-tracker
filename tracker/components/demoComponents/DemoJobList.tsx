@@ -12,7 +12,7 @@ const DemoJobList = () => {
   const searchParams = useSearchParams();
 
   const search = ''; //search params not used here
-  
+
   const jobStatus = searchParams.get('jobStatus') || 'all';
 
   const pageNumber = Number(searchParams.get('page')) || 1;
@@ -32,13 +32,24 @@ const DemoJobList = () => {
     parsedJobs = [];
   };
 
-  
+  const count = data?.count || 0;
+  const page = data?.page || 0;
+  const totalPages = data?.totalPages || 0;
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
   if (parsedJobs.length < 1) return <h2 className="text-xl font-semibold font-serif">No Jobs Found . . . </h2>
 
   return (
     <>
+      <div className='flex items-center justify-between mb-8'>
+        <h2 className='text-xl font-semibold font-serif'>
+          {count <= 1 ? `Search Total: ${count} Job` : `Search Total: ${count} Jobs`}
+          {/* You have {count} Total Job(s) */}
+        </h2>
+        {/* {totalPages < 2 ? null : (
+          <ButtonContainer currentPage={page} totalPages={totalPages} />
+        )} */}
+      </div>
       <div className="grid md:grid-cols-2 gap-8">
         {
           parsedJobs.map((job) => {
