@@ -5,13 +5,17 @@ import { demoGetAllJobsAction } from "@/utils/demoActions";
 import { useQuery } from "@tanstack/react-query";
 import { DemoJobType } from '@/utils/demoTypes';
 import DemoJobCard from "./DemoJobCard";
-
+import { useSearchParams } from "next/navigation";
 
 const DemoJobList = () => {
 
-  const search = '';
-  const jobStatus = 'all';
-  const pageNumber = 1;
+  const searchParams = useSearchParams();
+
+  const search = ''; //search params not used here
+  
+  const jobStatus = searchParams.get('jobStatus') || 'all';
+
+  const pageNumber = Number(searchParams.get('page')) || 1;
 
   const { data, isPending } = useQuery({
     queryKey: ['jobs', search, jobStatus, pageNumber],
@@ -27,6 +31,8 @@ const DemoJobList = () => {
   } else {
     parsedJobs = [];
   };
+
+  
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
   if (parsedJobs.length < 1) return <h2 className="text-xl font-semibold font-serif">No Jobs Found . . . </h2>
