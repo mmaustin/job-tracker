@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { DemoJobType } from '@/utils/demoTypes';
 import DemoJobCard from "./DemoJobCard";
 import { useSearchParams } from "next/navigation";
+import DemoButtonContainer from "./DemoButtonContainer";
 
 const DemoJobList = () => {
 
@@ -35,6 +36,8 @@ const DemoJobList = () => {
   const count = data?.count || 0;
   const page = data?.page || 0;
   const totalPages = data?.totalPages || 0;
+  console.log(totalPages);
+  
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>
   if (parsedJobs.length < 1) return <h2 className="text-xl font-semibold font-serif">No Jobs Found . . . </h2>
@@ -45,9 +48,9 @@ const DemoJobList = () => {
         <h2 className='text-xl font-semibold font-serif'>
           {count <= 1 ? `Search Total: ${count} Job` : `Search Total: ${count} Jobs`}
         </h2>
-        {/* {totalPages < 2 ? null : (
-          <ButtonContainer currentPage={page} totalPages={totalPages} />
-        )} */}
+        {totalPages < 2 ? null : (
+          <DemoButtonContainer currentPage={page} totalPages={totalPages} />
+        )}
       </div>
       <div className="grid md:grid-cols-2 gap-8">
         {

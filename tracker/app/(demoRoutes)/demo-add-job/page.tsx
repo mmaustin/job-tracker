@@ -8,7 +8,6 @@ const DemoAddJob = () => {
   
   return (
     <>
-      <p>the right place</p>
       <HydrationBoundary state={dehydrate(queryClient)}>
         <DemoCreateJobForm />
       </HydrationBoundary>
