@@ -10,6 +10,24 @@ type DemoButtonContainerType = {
 };
 
 const DemoButtonContainer = ({currentPage, totalPages}: DemoButtonContainerType) => {
+
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const pageButtons = Array.from({ length: totalPages }, (_, i) => i + 1);
+
+  const handlePageChange = (page: number) => {
+    const defaultParams = {
+      jobStatus: searchParams.get('jobStatus') || '',
+      page: String(page),
+    };
+
+    const params = new URLSearchParams(defaultParams);
+
+    router.push(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div>DemoButtonContainer</div>
   )
