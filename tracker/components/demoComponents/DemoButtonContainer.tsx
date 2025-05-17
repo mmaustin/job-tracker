@@ -9,7 +9,7 @@ type DemoButtonContainerType = {
   totalPages: number
 };
 
-const DemoButtonContainer = ({currentPage, totalPages}: DemoButtonContainerType) => {
+const DemoButtonContainer = ({ currentPage, totalPages }: DemoButtonContainerType) => {
 
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -29,7 +29,20 @@ const DemoButtonContainer = ({currentPage, totalPages}: DemoButtonContainerType)
   };
 
   return (
-    <div>DemoButtonContainer</div>
+    <div className='flex  gap-x-2'>
+      {pageButtons.map((page) => {
+        return (
+          <Button
+            key={page}
+            size='icon'
+            variant={currentPage === page ? 'default' : 'outline'}
+            onClick={() => handlePageChange(page)}
+          >
+            {page}
+          </Button>
+        );
+      })}
+    </div>
   )
 }
 export default DemoButtonContainer
