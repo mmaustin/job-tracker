@@ -77,4 +77,16 @@ export async function demoGetAllJobsAction({
     console.error(error);
     return { jobs: [], count: 0, page: 1, totalPages: 0 };
   }
-}
+};
+
+export async function demoDeleteJobAction(id: string): Promise<DeletedQueryType | null> {
+
+  try {
+    connectToDB();
+    const deletedQueryObject: DeletedQueryType = await DemoJob.deleteOne({ _id: id });
+
+    return deletedQueryObject;
+  } catch (error) {
+    return null;
+  }
+};
