@@ -27,9 +27,6 @@ const DemoJobCard = ({job}: {job: DemoJobType}) => {
         </Badge>
       </CardContent>
       <CardFooter className='flex gap-4' >
-        <Button asChild size="sm" >
-          <Link href={`/jobs/${job._id}`} >edit</Link>
-        </Button>
         <Button size="sm" >Delete </ Button>
       </CardFooter>
     </Card>

@@ -36,7 +36,6 @@ const DemoJobList = () => {
   const count = data?.count || 0;
   const page = data?.page || 0;
   const totalPages = data?.totalPages || 0;
-  console.log(totalPages);
   
 
   if (isPending) return <h2 className="text-xl">Please Wait . . . </h2>

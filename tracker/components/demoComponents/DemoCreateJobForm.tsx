@@ -48,8 +48,6 @@ const DemoCreateJobForm = () => {
   });
 
   function onSubmit(values: CreateAndEditJobType) {
-    console.log(values);
-    
     mutate(values);
   };
 
