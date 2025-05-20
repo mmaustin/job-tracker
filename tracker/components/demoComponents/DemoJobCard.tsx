@@ -7,6 +7,7 @@ import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
 import DemoJobInfo from './DemoJobInfo';
 import { MapPin, Briefcase, CalendarDays, RadioTower } from 'lucide-react';
+import DemoDeleteJobBtn from './DemoDeleteJobBtn';
 
 const DemoJobCard = ({job}: {job: DemoJobType}) => {
   const date = new Date(job.createdAt).toLocaleDateString();
@@ -27,7 +28,7 @@ const DemoJobCard = ({job}: {job: DemoJobType}) => {
         </Badge>
       </CardContent>
       <CardFooter className='flex gap-4' >
-        <Button size="sm" >Delete </ Button>
+      <DemoDeleteJobBtn id={job._id} />
       </CardFooter>
     </Card>
   )
