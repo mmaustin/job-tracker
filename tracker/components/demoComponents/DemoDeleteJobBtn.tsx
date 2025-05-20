@@ -28,7 +28,15 @@ const DemoDeleteJobBtn = ({ id }: { id: string }) => {
   });
 
   return (
-    <div>DemoDeleteJobBtn</div>
+    <Button
+      size="sm"
+      disabled={isPending}
+      onClick={() => {
+        mutate(id);
+      }}
+    >
+      {isPending ? 'deleting . . . ' : 'delete'}
+    </Button>
   )
 }
 export default DemoDeleteJobBtn
