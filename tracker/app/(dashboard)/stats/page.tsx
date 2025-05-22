@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import ChartsContainer from "@/components/ChartsContainer";
 import StatsContainer from "@/components/StatsContainer";
 import { getChartsDataAction, getStatsAction } from "@/utils/actions";
