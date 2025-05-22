@@ -148,7 +148,6 @@ export async function getStatsAction(): Promise<{
   declined: number;
 }> {
   const userId = authenticateClerkId();
-  console.log(userId);
 
 
   try {

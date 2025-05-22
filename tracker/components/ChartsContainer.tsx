@@ -16,7 +16,7 @@ function ChartsContainer() {
   return (
     <section className='mt-16'>
       <h1 className='text-4xl font-semibold text-center'>
-        Monthly Applications
+        Monthly Applications <span className='text-sm'>(last 3 months)</span>
       </h1>
       <ResponsiveContainer width='100%' height={300}>
         <BarChart data={data} margin={{ top: 50 }}>
