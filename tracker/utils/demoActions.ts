@@ -69,7 +69,7 @@ export async function demoGetAllJobsAction({
 
     const count: number = await DemoJob.find(queryObj).countDocuments();
 
-    const totalPages = Math.ceil(count/limit);
+    const totalPages = Math.ceil(count / limit);
 
     return { jobs, count, page, totalPages };
 
@@ -90,3 +90,34 @@ export async function demoDeleteJobAction(id: string): Promise<DeletedQueryType 
     return null;
   }
 };
+
+export async function demoGetChartsDataAction(): Promise<Array<{ date: string; count: number }>> {
+
+  const threeMonthsAgo = dayjs().subtract(3, 'month').toDate();
+
+  try {
+    await connectToDB();
+
+    const jobs: DemoJobType[] = await DemoJob.find({ createdAt: { $gte: threeMonthsAgo } }).sort({ createdAt: 'desc' });
+
+    const monthlyApplications = jobs.reduce((acc, job) => {
+      const date = dayjs(job.createdAt).format('MMM YY');
+
+      const existingEntry = acc.find((entry) => entry.date === date);
+
+      if (existingEntry) {
+        existingEntry.count += 1;
+      } else {
+        acc.push({ date, count: 1 });
+      }
+
+      return acc;
+    }, [] as Array<{ date: string; count: number }>);
+
+    return monthlyApplications;
+
+  } catch (error) {
+    redirect('/demo-jobs');
+  }
+
+}
