@@ -1,4 +1,5 @@
-import { AreaChart, Layers, AppWindow, House } from 'lucide-react';
+import { AreaChart, Layers, AppWindow, House} from 'lucide-react';
+// import { FaHome } from 'react-icons/fa';
 
 type NavLink = {
   href: string,
@@ -24,7 +25,7 @@ export const demoLinks: NavLink[] = [
   },
   {
     href: '/',
-    label: 'stats',
+    label: 'home',
     icon: <House />,
   }
 ];

@@ -31,7 +31,7 @@ export default function Home() {
               </Link>
             </Button>
             <Button size={'sm'} asChild>
-              <Link href={'/under-construction'} >
+              <Link href={'/demo-add-job'} >
                 Demo Mode
               </Link>
             </Button>
