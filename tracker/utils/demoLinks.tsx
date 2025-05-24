@@ -1,4 +1,4 @@
-import { AreaChart, Layers, AppWindow } from 'lucide-react';
+import { AreaChart, Layers, AppWindow, House } from 'lucide-react';
 
 type NavLink = {
   href: string,
@@ -21,5 +21,10 @@ export const demoLinks: NavLink[] = [
     href: '/demo-stats',
     label: 'stats',
     icon: <AreaChart />,
+  },
+  {
+    href: '/',
+    label: 'stats',
+    icon: <House />,
   }
 ];

@@ -11,6 +11,7 @@ const layout = ({ children }: PropsWithChildren) => {
       <div className="md:col-span-4">
         <DemoNavbar />
         <div className="py-16 px-4 sm:px-8 md:px-16">
+        <p className='m-0 capitalize text-[11px] mb-6 text-center font-serif italic'>auth and full cRUD capabilities available upon sign in. delete and create here with abandon!</p>
           {children}
         </div>
       </div>
