@@ -119,5 +119,38 @@ export async function demoGetChartsDataAction(): Promise<Array<{ date: string; c
   } catch (error) {
     redirect('/demo-jobs');
   }
+};
 
-}
+export async function demoGetStatsAction(): Promise<{
+  pending: number;
+  interview: number;
+  declined: number;
+}> {
+
+  try {
+    await connectToDB();
+
+    const stats: { _id: string, count: number }[] = await DemoJob.aggregate(
+      [
+        { $group: { _id: "$status", count: { $count: {} } } }
+      ]
+    );
+
+    const statsObject = stats.reduce((acc, curr) => {
+      acc[curr._id] = curr.count;
+      return acc;
+    }, {} as Record<string, number>);
+
+    const defaultStats = {
+      pending: 0,
+      declined: 0,
+      interview: 0,
+      ...statsObject,
+    };
+
+    return defaultStats;
+
+  } catch (error) {
+    redirect('/demo-jobs');
+  }
+};
